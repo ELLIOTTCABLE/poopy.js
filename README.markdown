@@ -122,4 +122,5 @@ Attributions
 ------------
 The primary code for this system is the `Object.beget()` method; this method’s
 original form was published in Douglas Crockford’s “JavaScript: The Good
-Parts.” Credit for this original form obviously goes to him.
+Parts.” Credit for this original form obviously goes to him, and whoever he
+would like to credit for that code.
