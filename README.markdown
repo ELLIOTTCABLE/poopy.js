@@ -105,7 +105,7 @@ Normal JS:
     };
     
     a_snorklebob = new Widget.Snorklebob();
-    a_widget.toString();
+    a_snorklebob.toString();
 
 POOPy JS:
 
