@@ -17,8 +17,8 @@ itself, `poopy.js` operates as a contract: libraries depending on `poopy.js`
 are written in a POOPy style, and are intended to be used with `poopy.js`’s
 extensions.
 
-Style
------
+Style & Use
+-----------
 Let’s look at a simple example, describing how one would use a standard
 JavaScript library, and then let’s look at how one would use a POOPy library.
 
@@ -117,6 +117,38 @@ POOPy JS:
       
     a_snorklebob = widget.snorklebob.beget();
     a_snorklebob.toString();
+
+### Begettors (constructor functions)
+When an object begets another object, it executes its `Begettor` function.
+Normally, when none is defined, this is defined to be a simple noop function;
+however, you are free to override this function to preform any preparation you
+desire on your newly created descendant.
+
+Let’s take a simple example, that initializes a `Widget` with either a given
+value for `foo`, or, alternatively, a randomly generated string.
+
+    var Widget = function(blueprint) {
+      this['foo'] = (typeof blueprint != 'undefined' && blueprint.hasOwnKey('foo')) ?
+        blueprint['foo'] : (Math.random() * 1e32).toString(36);
+    };
+    
+    a_widget = new Widget({});
+    a_widget['foo'] //=> '1n0w4oy0797owwggosow'
+
+Now in POOPy JS:
+
+    var widget = {};
+    widget['Begettor'] = function(blueprint) {
+      this['foo'] = (typeof blueprint != 'undefined' && blueprint.hasOwnKey('foo')) ?
+        blueprint['foo'] : (Math.random() * 1e32).toString(36);
+    };
+    
+    a_widget = widget.beget();
+    a_widget['foo'] //=> '225wep9t9yrogg0s00o8g'
+
+This method of executing the constructor mitigates many of the problems
+inherent to the `new` keyword; it’s also simply a more purist form of
+traditional prototypal style than the alternatives.
 
 Attributions
 ------------
