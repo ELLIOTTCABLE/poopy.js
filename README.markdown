@@ -118,8 +118,8 @@ POOPy JS:
     a_snorklebob = widget.snorklebob.beget();
     a_snorklebob.toString();
 
-### Begettors (constructor functions)
-When an object begets another object, it executes its `Begettor` function.
+### Begetters (constructor functions)
+When an object begets another object, it executes its `Begetter` function.
 Normally, when none is defined, this is defined to be a simple noop function;
 however, you are free to override this function to preform any preparation you
 desire on your newly created descendant.
@@ -138,7 +138,7 @@ value for `foo`, or, alternatively, a randomly generated string.
 Now in POOPy JS:
 
     var widget = {};
-    widget['Begettor'] = function(blueprint) {
+    widget['Begetter'] = function(blueprint) {
       this['foo'] = (typeof blueprint != 'undefined' && blueprint.hasOwnKey('foo')) ?
         blueprint['foo'] : (Math.random() * 1e32).toString(36);
     };
