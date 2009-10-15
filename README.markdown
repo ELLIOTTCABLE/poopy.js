@@ -119,10 +119,11 @@ POOPy JS:
     a_snorklebob.toString();
 
 ### Begetters (constructor functions)
-When an object begets another object, it executes its `Begetter` function.
-Normally, when none is defined, this is defined to be a simple noop function;
-however, you are free to override this function to preform any preparation you
-desire on your newly created descendant.
+When an object begets another object, it invokes the ancestor object’s
+`Begetter` function with the `new` keyword. Normally, when none is defined,
+this is defined to be a simple noop function; however, you are free to
+override this function to preform any preparation you desire on your newly
+created descendant.
 
 Let’s take a simple example, that initializes a `Widget` with either a given
 value for `foo`, or, alternatively, a randomly generated string.
