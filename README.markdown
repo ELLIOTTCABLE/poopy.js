@@ -32,8 +32,8 @@ Let’s first look at utilizing the general function (in POOPy terms, a ‘proto
 method’—one intended to be executed on the prototype, instead of on
 descendants), first in standard JavaScript:
 
-    var Widget = new Function();
-    Widget.prepare = function() {
+    var Widget = new Function;
+    Widget.prepare = function () {
       // …
     };
     
@@ -42,7 +42,7 @@ descendants), first in standard JavaScript:
 Pretty standard, no? Let’s do the same thing, but with poopy.js:
 
     var widget = {};
-    widget['prepare'] = function() {
+    widget['prepare'] = function () {
       // …
     };
     
@@ -70,13 +70,13 @@ letter, such as `Object`).
 
 Let’s look at this in practice:
 
-    var Widget = new Function();
-    Widget.prototype.toString = function() {
+    var Widget = new Function;
+    Widget.prototype.toString = function () {
       // …
     };
     
-    a_widget = new Widget();
-    a_widget.toString();
+    aWidget = new Widget();
+    aWidget.toString();
 
 Pretty ugly, right? We have to differentiate between the `Widget` object, and
 the methods intended for descendants (well, really, the children; there’s no
@@ -86,37 +86,37 @@ Widget()`, so you’re effectively limited to one level of depth).
 This becomes much more sensible with `poopy.js`:
 
     var widget = {};
-    widget['toString'] = function() {
+    widget['toString'] = function () {
       // …
     };
     
-    a_widget = widget.beget();
-    a_widget.toString();
+    aWidget = widget.beget();
+    aWidget.toString();
 
 ### Namespaced objects
 Finally, it’s worth noting that namespaced objects will also be inherited.
 
 Normal JS:
 
-    var Widget = new Function();
-    Widget.Snorklebob = new Function();
-    Widget.Snorklebob.prototype.toString = function() {
+    var Widget = new Function;
+    Widget.Snorklebob = new Function;
+    Widget.Snorklebob.prototype.toString = function () {
       // …
     };
     
-    a_snorklebob = new Widget.Snorklebob();
-    a_snorklebob.toString();
+    aaSnorklebobsnorklebob = new Widget.Snorklebob();
+    aSnorklebob.toString();
 
 POOPy JS:
 
     var widget = {};
     widget['snorklebob'] = {};
-    widget.snorklebob['toString'] = function() {
+    widget.snorklebob['toString'] = function () {
       // …
     };
       
-    a_snorklebob = widget.snorklebob.beget();
-    a_snorklebob.toString();
+    aSnorklebob = widget.snorklebob.beget();
+    aSnorklebob.toString();
 
 ### Begetters (constructor functions)
 When an object begets another object, it invokes the ancestor object’s
@@ -128,24 +128,24 @@ created descendant.
 Let’s take a simple example, that initializes a `Widget` with either a given
 value for `foo`, or, alternatively, a randomly generated string.
 
-    var Widget = function(blueprint) {
-      this['foo'] = (typeof blueprint != 'undefined' && blueprint.hasOwnKey('foo')) ?
+    var Widget = function (blueprint) {
+      this['foo'] = (typeof blueprint !== 'undefined' && blueprint.hasOwnKey('foo')) ?
         blueprint['foo'] : (Math.random() * 1e32).toString(36);
     };
     
-    a_widget = new Widget({});
-    a_widget['foo'] //=> '1n0w4oy0797owwggosow'
+    aWidget = new Widget({});
+    aWidget['foo']; //=> '1n0w4oy0797owwggosow'
 
 Now in POOPy JS:
 
     var widget = {};
-    widget['Begetter'] = function(blueprint) {
-      this['foo'] = (typeof blueprint != 'undefined' && blueprint.hasOwnKey('foo')) ?
+    widget['Begetter'] = function (blueprint) {
+      this['foo'] = (typeof blueprint !== 'undefined' && blueprint.hasOwnKey('foo')) ?
         blueprint['foo'] : (Math.random() * 1e32).toString(36);
     };
     
-    a_widget = widget.beget();
-    a_widget['foo'] //=> '225wep9t9yrogg0s00o8g'
+    aWidget = widget.beget();
+    aWidget['foo']; //=> '225wep9t9yrogg0s00o8g'
 
 This method of executing the constructor mitigates many of the problems
 inherent to the `new` keyword; it’s also simply a more purist form of
