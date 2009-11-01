@@ -11,11 +11,11 @@ that once one has added functionality as they see fit to an object, they can
 immediately make use of that added functionality on any further datasets
 (objects).
 
-`poopy.js` provides a few useful methods to facilitate POOPy programming.
-Instead of providing a great surfeit of added functionality to JavaScript
-itself, `poopy.js` operates as a contract: libraries depending on `poopy.js`
-are written in a POOPy style, and are intended to be used with `poopy.js`’s
-extensions.
+`poopy.js` provides only a single useful method to facilitate POOPy
+programming. Instead of providing a great surfeit of added functionality to
+JavaScript itself, `poopy.js` operates as a contract: libraries depending on
+`poopy.js` are written in a POOPy style, and are intended to be used with
+`poopy.js`’s extensions.
 
 Style & Use
 -----------
@@ -94,7 +94,7 @@ This becomes much more sensible with `poopy.js`:
     aWidget.toString();
 
 ### Namespaced objects
-Finally, it’s worth noting that namespaced objects will also be inherited.
+It’s worth noting that namespaced objects will also be inherited.
 
 Normal JS:
 
@@ -104,7 +104,7 @@ Normal JS:
       // …
     };
     
-    aaSnorklebobsnorklebob = new(Widget.Snorklebob);
+    aSnorklebob = new(Widget.Snorklebob);
     aSnorklebob.toString();
 
 POOPy JS:
@@ -118,11 +118,12 @@ POOPy JS:
     aSnorklebob = widget.snorklebob.beget();
     aSnorklebob.toString();
 
-### Begetters (constructor functions)
+### Constructor functions
 When an object begets another object, it invokes the ancestor object’s
-`Begetter` function with the `new` keyword. Normally, when none is defined,
-this is defined to be a simple noop function; however, you are free to
-override this function to preform any preparation you desire on your newly
+`constructor` function with the `new` keyword. Normally, when none is defined,
+this is inherited from `Object.prototype.constructor`, which itself is just
+the `Object` function itself (a simple noop function); however, you are free
+to override this function to preform any preparation you desire on your newly
 created descendant.
 
 Let’s take a simple example, that initializes a `Widget` with either a given
@@ -144,7 +145,7 @@ Now in POOPy JS:
         blueprint['foo'] : (Math.random() * 1e32).toString(36);
     };
     
-    aWidget = widget.beget();
+    aWidget = widget.beget({});
     aWidget['foo']; //=> '225wep9t9yrogg0s00o8g'
 
 This method of executing the constructor mitigates many of the problems
