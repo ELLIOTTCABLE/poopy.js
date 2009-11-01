@@ -32,7 +32,7 @@ Let’s first look at utilizing the general function (in POOPy terms, a ‘proto
 method’—one intended to be executed on the prototype, instead of on
 descendants), first in standard JavaScript:
 
-    var Widget = new Function;
+    var Widget = new(Function);
     Widget.prepare = function () {
       // …
     };
@@ -54,7 +54,7 @@ frankly, it’s extremely broken. Instead, we deal exclusively with objects
 themselves, asking objects to beget to new objects their data and
 functionality. Also notice that we are not inheriting our new objects from
 `Function`, instead, we simply create an empty basic object (created, in this
-case, with an object literal; `new Object()` is just as valid, but I prefer to
+case, with an object literal; `new(Object)` is just as valid, but I prefer to
 avoid any use of the `new` keyword entirely).
 
 ### Begat methods
@@ -70,12 +70,12 @@ letter, such as `Object`).
 
 Let’s look at this in practice:
 
-    var Widget = new Function;
+    var Widget = new(Function);
     Widget.prototype.toString = function () {
       // …
     };
     
-    aWidget = new Widget();
+    aWidget = new(Widget);
     aWidget.toString();
 
 Pretty ugly, right? We have to differentiate between the `Widget` object, and
@@ -98,13 +98,13 @@ Finally, it’s worth noting that namespaced objects will also be inherited.
 
 Normal JS:
 
-    var Widget = new Function;
-    Widget.Snorklebob = new Function;
+    var Widget = new(Function);
+    Widget.Snorklebob = new(Function);
     Widget.Snorklebob.prototype.toString = function () {
       // …
     };
     
-    aaSnorklebobsnorklebob = new Widget.Snorklebob();
+    aaSnorklebobsnorklebob = new(Widget.Snorklebob);
     aSnorklebob.toString();
 
 POOPy JS:
@@ -133,7 +133,7 @@ value for `foo`, or, alternatively, a randomly generated string.
         blueprint['foo'] : (Math.random() * 1e32).toString(36);
     };
     
-    aWidget = new Widget({});
+    aWidget = new(Widget)({});
     aWidget['foo']; //=> '1n0w4oy0797owwggosow'
 
 Now in POOPy JS:
