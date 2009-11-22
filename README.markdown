@@ -140,7 +140,7 @@ value for `foo`, or, alternatively, a randomly generated string.
 Now in POOPy JS:
 
     var widget = {};
-    widget['Begetter'] = function (blueprint) {
+    widget['constructor'] = function (blueprint) {
       this['foo'] = (typeof blueprint !== 'undefined' && blueprint.hasOwnKey('foo')) ?
         blueprint['foo'] : (Math.random() * 1e32).toString(36);
     };
