@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+process.ARGV.shift();
+
+var path = require("path"),
+   posix = require("posix"),
+    from = require("../lib/from"),
+     cwd = process.cwd();
+
+// Make `process.ARGV[0]` and `process.ARGV[1]` into full paths. Stolen from
+// `src/node.js`
+if (process.ARGV[0].indexOf('/') > 0) {
+  process.ARGV[0] = path.join(cwd, process.ARGV[0]) }
+
+if (process.ARGV[1].charAt(0) != "/" ) {
+  process.ARGV[1] = path.join(cwd, process.ARGV[1]) }
+
+from.absolute(process.ARGV[1]).wait();
