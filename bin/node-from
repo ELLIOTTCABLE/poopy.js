@@ -3,7 +3,7 @@ process.ARGV.shift();
 
 var path = require("path"),
    posix = require("posix"),
-    from = require("../lib/from"),
+    from = require("from"),
      cwd = process.cwd();
 
 // Make `process.ARGV[0]` and `process.ARGV[1]` into full paths. Stolen from
