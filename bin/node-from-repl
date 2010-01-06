@@ -1,0 +1,15 @@
+#!/usr/bin/env node-from
+process.ARGV.shift();
+
+var path = require("path"),
+    repl = require("repl"),
+    eyes = require("eyes"),
+   posix = require("posix"),
+     cwd = process.cwd();
+
+if (typeof process.ARGV[1] !== 'undefined') {
+  from.absolute(process.ARGV[1]).wait();
+}
+
+repl.writer = eyes.inspector();
+repl.start();
