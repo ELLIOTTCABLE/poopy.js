@@ -7,9 +7,17 @@ var path = require("path"),
    posix = require("posix"),
      cwd = process.cwd();
 
-if (typeof process.ARGV[1] !== 'undefined') {
-  from.absolute(process.ARGV[1]).wait();
+repl.writer = eyes.inspector();
+repl.prompt = " > ";
+
+var file = process.ARGV[1];
+if (typeof file !== 'undefined') {
+  if (file.charAt(0) != "/" ) { file = path.join(cwd, file) };
+  process.stdio.write("-- Scoping in: " + file + '\n');
+  
+  // FIXME: This *should* use `process.mixin` to mix the target *into* the
+  //        scope. Unfortuantely, that doesn’t work, and I don’t know why.
+  repl.scope = from.absolute(file).wait();
 }
 
-repl.writer = eyes.inspector();
 repl.start();
