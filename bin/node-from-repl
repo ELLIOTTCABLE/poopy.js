@@ -8,7 +8,7 @@ var path = require("path"),
      cwd = process.cwd();
 
 repl.writer = eyes.inspector();
-repl.prompt = " > ";
+repl.prompt = "";
 
 process.ARGV.slice(1).forEach(function (arg) {
   if (arg.charAt(0) != "/" ) { arg = path.join(cwd, arg) };
