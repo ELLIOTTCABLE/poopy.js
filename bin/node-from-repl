@@ -18,6 +18,7 @@ if (typeof file !== 'undefined') {
   // FIXME: This *should* use `process.mixin` to mix the target *into* the
   //        scope. Unfortuantely, that doesn’t work, and I don’t know why.
   repl.scope = from.absolute(file).wait();
+  repl.scope['it'] = repl.scope;
 }
 
 repl.start();
