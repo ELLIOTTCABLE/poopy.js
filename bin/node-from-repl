@@ -21,4 +21,6 @@ process.ARGV.slice(1).forEach(function (arg) {
 // TODO: Can we make this `this`?
 repl.scope['it'] = repl.scope;
 
+process.stdio.write("Type statements to have them executed, and their results printed:" + '\n');
+process.stdio.write("(The attributes of the scoped-in files have been provided in the local scope)" + '\n');
 repl.start();
