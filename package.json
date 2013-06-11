@@ -1,0 +1,10 @@
+{     "author" : "elliottcable (http://ell.io/tt)"
+   
+,       "name" : "poopy.js"
+,    "version" : "1.0.0"
+,    "license" : "MIT"
+, "repository" :{"type":"git", "url":"git://github.com/ELLIOTTCABLE/poopy.js.git"}
+   
+,       "main" : "lib/poopy.js"
+   
+,    "engines" :{"node":"~0.10.10"} }
